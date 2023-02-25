@@ -6,8 +6,10 @@ import joblib
 st.header("Paris Housing Price Prediction")
 
 squareMeters = st.number_input("Enter squareMeters")
+made = st.number_input("Enter made")
+garage = st.number_input("Enter garage")
 
-preds = ['squareMeters']
+preds = ['squareMeters', 'made', 'garage']
 
 # If button is pressed
 if st.button("Submit"):
@@ -16,7 +18,7 @@ if st.button("Submit"):
     clf = joblib.load("model.pkl")
 
     # Store inputs into dataframe
-    X = pd.DataFrame([[squareMeters]], columns=preds)
+    X = pd.DataFrame([[squareMeters, made, garage]], columns=preds)
 
     # Get prediction
     prediction = clf.predict(X)[0]
